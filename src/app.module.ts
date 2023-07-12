@@ -5,6 +5,7 @@ import { CurrencyModule } from './currency/currency.module';
 import { OfferModule } from './offer/offer.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AppController } from './app.controller';
+import { OfferController } from './offer/offer.controller';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { AppController } from './app.controller';
     OfferModule,
     PrismaModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, OfferController],
   providers: [],
 })
 export class AppModule {}
