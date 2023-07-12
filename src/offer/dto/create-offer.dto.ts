@@ -1,4 +1,6 @@
-import { IsDecimal, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Prisma } from '@prisma/client';
+import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateOfferDto {
   @IsNotEmpty()
@@ -18,6 +20,6 @@ export class CreateOfferDto {
   price: number;
 
   @IsNotEmpty()
-  @IsDecimal()
-  quantity: number;
+  @Transform(({ value }) => new Prisma.Decimal(value))
+  quantity: Prisma.Decimal;
 }

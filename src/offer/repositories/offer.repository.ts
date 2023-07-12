@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Offer } from './models/offer.model';
+import { Offer } from '../models/offer.model';
 
 @Injectable()
-export class OfferService {
+export class OfferRepository {
   constructor(private prismaService: PrismaService) {}
 
   async todaysOffers(take: number, skip: number) {
