@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Currency {
+
+  id        String      @id @default(uuid())
+
+  name      String      @db.VarChar(255)
+
+  wallets   Wallet[]
+
+  offers    Offer[]
+
+}
+
+
+model User {
+
+  id        String     @id @default(uuid())
+
+  name      String
+
+  email     String     @unique
+
+  wallets   Wallet[]
+
+  offers    Offer[]
+
+
+}
+
+
+model Wallet {
+
+  id         String       @id @default(uuid())
+
+  quantity   Decimal      @db.Decimal(16, 8)
+
+
+  user       User         @relation(fields: [userId], references: [id])
+  userId     String       
+
+
+  currency   Currency     @relation(fields: [currencyId], references: [id])
+  currencyId String       
+
+}
+
+
+model Offer {
+  id      String      @id @default(uuid())
+  
+  price        Int
+
+  quantity     Int
+
+  createdAt    DateTime     @default(now())
+
+  deleted      Boolean      @default(false)
+
+
+  user         User         @relation(fields: [userId], references: [id])
+  userId       String       
+
+
+  currency     Currency     @relation(fields: [currencyId], references: [id])
+  currencyId   String
+}
