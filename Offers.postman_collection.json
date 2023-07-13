@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "95097eec-ae64-4e21-b3b4-2becf9accd43",
+		"name": "Offers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28112856"
+	},
+	"item": [
+		{
+			"name": "Today's offers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Offer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"walletId\": \"\",\n    \"userId\": \"73796bbc-aea5-4bca-87a2-4a1a9269fd5f\",\n    \"currencyId\": \"90328b9e-e267-457f-a4d6-735f6851f8d8\",\n    \"quantity\": 2,\n    \"price\": 1000\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/offer",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"offer"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "take",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Offer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "localhost:3000/offer"
+			},
+			"response": []
+		}
+	]
+}
