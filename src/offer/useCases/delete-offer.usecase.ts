@@ -20,6 +20,7 @@ export class DeleteOfferUseCase {
       );
     }
 
-    return this.offerRepository.delete(userId, offerId);
+    const result = await this.offerRepository.delete(userId, offerId);
+    return result;
   }
 }

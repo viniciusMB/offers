@@ -4,7 +4,7 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
-import { WalletRepository } from 'src/wallet/repositories/wallet.repository';
+import { WalletRepository } from '../../wallet/repositories/wallet.repository';
 import { CreateOfferDto } from '../dto/create-offer.dto';
 import { OfferRepository } from '../repositories/offer.repository';
 
@@ -20,7 +20,7 @@ export class CreateOfferUseCase {
 
     const wallet = await this.walletRepository.findOneOrFail(walletId);
 
-    if (wallet.quantity < quantity && wallet.currencyId !== currencyId) {
+    if (wallet.quantity < quantity || wallet.currencyId != currencyId) {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
