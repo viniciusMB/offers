@@ -39,3 +39,13 @@ That's an Offer API designed to create and interact with users' crypto offers. T
 ## API Endpoints
 
 Once the project is running, you can use the following url to access Swagger documentation `http://localhost:3000/api`
+
+
+## Future Improvements
+
+1. Study the possibility of migrating the offers table to DynamoDB or Redis. It could be a good idea.
+   1.1 Do the offers have expiration times? How many users do we have? Perhaps there is a better way to store this data.
+
+2. Create a CI/CD pipeline and deployment setup.
+
+3. Add observability with logs.
