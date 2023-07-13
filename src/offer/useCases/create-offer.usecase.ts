@@ -4,7 +4,7 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
-import { WalletService } from 'src/wallet/wallet.service';
+import { WalletRepository } from 'src/wallet/repositories/wallet.repository';
 import { CreateOfferDto } from '../dto/create-offer.dto';
 import { OfferRepository } from '../repositories/offer.repository';
 
@@ -12,13 +12,13 @@ import { OfferRepository } from '../repositories/offer.repository';
 export class CreateOfferUseCase {
   constructor(
     private readonly offerRepository: OfferRepository,
-    private readonly walletService: WalletService,
+    private readonly walletRepository: WalletRepository,
   ) {}
 
   async execute(input: CreateOfferDto) {
     const { walletId, quantity, currencyId, userId } = input;
 
-    const wallet = await this.walletService.findOneOrFail(walletId);
+    const wallet = await this.walletRepository.findOneOrFail(walletId);
 
     if (wallet.quantity < quantity && wallet.currencyId !== currencyId) {
       throw new HttpException(
