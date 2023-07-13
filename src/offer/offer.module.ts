@@ -4,11 +4,12 @@ import { OfferController } from './offer.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { WalletModule } from 'src/wallet/wallet.module';
 import { CreateOfferUseCase } from './useCases/create-offer.usecase';
+import { DeleteOfferUseCase } from './useCases/delete-offer.usecase';
 
 @Module({
   imports: [PrismaModule, WalletModule],
   controllers: [OfferController],
-  providers: [OfferRepository, CreateOfferUseCase],
-  exports: [OfferRepository, CreateOfferUseCase],
+  providers: [OfferRepository, CreateOfferUseCase, DeleteOfferUseCase],
+  exports: [OfferRepository, CreateOfferUseCase, DeleteOfferUseCase],
 })
 export class OfferModule {}

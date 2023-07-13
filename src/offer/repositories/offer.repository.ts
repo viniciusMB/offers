@@ -37,7 +37,7 @@ export class OfferRepository {
           gte: today,
         },
         deleted: false,
-        id: userId,
+        userId: userId,
       },
     });
   }
@@ -52,6 +52,28 @@ export class OfferRepository {
         },
         currency: { connect: { id: currencyId } },
         wallet: { connect: { id: walletId } },
+      },
+    });
+  }
+
+  async delete(userId: string, offerId: string) {
+    return this.prismaService.offer.updateMany({
+      where: {
+        id: offerId,
+        userId: userId,
+      },
+      data: {
+        deleted: true,
+      },
+    });
+  }
+
+  async findOne(userId: string, offerId: string) {
+    return this.prismaService.offer.findFirst({
+      where: {
+        deleted: false,
+        userId: userId,
+        id: offerId,
       },
     });
   }
